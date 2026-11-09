@@ -78,6 +78,96 @@
       },
       "tire_rr": {
         "name": "Reifen hinten rechts"
+      },
+      "rated_range": {
+        "name": "Reichweite (Rated)"
+      },
+      "charger_voltage": {
+        "name": "Ladegerät-Spannung"
+      },
+      "charger_amps": {
+        "name": "Ladegerät-Stromstärke"
+      },
+      "charger_phases": {
+        "name": "Ladegerät-Phasen"
+      },
+      "driver_temp": {
+        "name": "Fahrertemperatur"
+      },
+      "passenger_temp": {
+        "name": "Beifahrertemperatur"
+      },
+      "speed": {
+        "name": "Geschwindigkeit"
+      },
+      "shift_state": {
+        "name": "Fahrmodus"
+      },
+      "destination": {
+        "name": "Ziel"
+      },
+      "distance_to_arrival": {
+        "name": "Entfernung bis Ankunft"
+      },
+      "time_to_arrival": {
+        "name": "Zeit bis Ankunft"
+      },
+      "lifetime_energy_used": {
+        "name": "Energieverbrauch über Lebensdauer"
+      },
+      "energy_remaining": {
+        "name": "Verbleibende Energie"
+      },
+      "battery_health": {
+        "name": "Akkugesundheit"
+      },
+      "nominal_full_pack": {
+        "name": "Nominale Packenergie"
+      },
+      "charge_cable": {
+        "name": "Ladekabel"
+      },
+      "charge_port_latch": {
+        "name": "Ladeanschluss-Verriegelung"
+      },
+      "percentage_charged": {
+        "name": "Prozent geladen"
+      },
+      "solar_power": {
+        "name": "Solarleistung"
+      },
+      "battery_power": {
+        "name": "Batterieleistung"
+      },
+      "load_power": {
+        "name": "Verbrauch"
+      },
+      "grid_power": {
+        "name": "Netzleistung"
+      },
+      "generator_power": {
+        "name": "Generatorleistung"
+      },
+      "energy_left": {
+        "name": "Verbleibende Energie (Site)"
+      },
+      "total_pack_energy": {
+        "name": "Packenergie gesamt"
+      },
+      "island_status": {
+        "name": "Inselstatus"
+      },
+      "grid_status": {
+        "name": "Netzstatus"
+      },
+      "wall_connector_power": {
+        "name": "Leistung"
+      },
+      "wall_connector_state": {
+        "name": "Zustand"
+      },
+      "vin": {
+        "name": "Fahrzeug"
       }
     },
     "binary_sensor": {
@@ -104,11 +194,65 @@
       },
       "climate_on": {
         "name": "Klima an"
+      },
+      "online": {
+        "name": "Status"
+      },
+      "charge_port_latched": {
+        "name": "Ladeanschluss verriegelt"
+      },
+      "preconditioning": {
+        "name": "Vorkonditionierung"
+      },
+      "cabin_overheat_protection": {
+        "name": "Überhitzungsschutz der Kabine"
+      },
+      "driver_front_door": {
+        "name": "Fahrertür vorne"
+      },
+      "passenger_front_door": {
+        "name": "Beifahrertür vorne"
+      },
+      "driver_rear_door": {
+        "name": "Fahrertür hinten"
+      },
+      "passenger_rear_door": {
+        "name": "Beifahrertür hinten"
+      },
+      "front_driver_window": {
+        "name": "Fahrerfenster vorne"
+      },
+      "front_passenger_window": {
+        "name": "Beifahrerfenster vorne"
+      },
+      "rear_driver_window": {
+        "name": "Fahrerfenster hinten"
+      },
+      "rear_passenger_window": {
+        "name": "Beifahrerfenster hinten"
+      },
+      "backup_capable": {
+        "name": "Backup-fähig"
+      },
+      "grid_services_active": {
+        "name": "Netzdienste aktiv"
+      },
+      "grid_services_enabled": {
+        "name": "Netzdienste aktiviert"
+      },
+      "storm_mode_active": {
+        "name": "Sturmwarnung aktiv"
+      },
+      "grid_status_active": {
+        "name": "Netz aktiv"
       }
     },
     "device_tracker": {
       "location": {
         "name": "Standort"
+      },
+      "route": {
+        "name": "Route"
       }
     },
     "switch": {
@@ -223,6 +367,30 @@
       },
       "seat_heater_rear_right": {
         "name": "Sitzheizung hinten rechts"
+      }
+    },
+    "cover": {
+      "trunk_cover": {
+        "name": "Kofferraum"
+      },
+      "frunk_cover": {
+        "name": "Frunk"
+      },
+      "charge_port_cover": {
+        "name": "Ladeanschluss-Klappe"
+      },
+      "windows_cover": {
+        "name": "Lüftungsfenster"
+      }
+    },
+    "media_player": {
+      "mediaplayer": {
+        "name": "Mediaplayer"
+      }
+    },
+    "update": {
+      "update": {
+        "name": "Update"
       }
     }
   }

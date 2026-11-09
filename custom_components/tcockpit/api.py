@@ -51,3 +51,6 @@ class TCockpitApi:
         body = {"idempotencyKey": secrets.token_urlsafe(18)}
         body.update({k: v for k, v in params.items() if v is not None})
         return await self._request("POST", f"/api/ha/v1/vehicles/{vin}/commands/{name}", body)
+
+    async def energy(self) -> dict:
+        return await self._request("GET", "/api/ha/v1/energy")

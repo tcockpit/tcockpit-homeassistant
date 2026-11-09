@@ -27,6 +27,9 @@ PLATFORMS = [
     Platform.NUMBER,
     Platform.BUTTON,
     Platform.SELECT,
+    Platform.COVER,
+    Platform.MEDIA_PLAYER,
+    Platform.UPDATE,
 ]
 
 SERVICE_SEND_COMMAND = "send_command"
@@ -40,18 +43,25 @@ SERVICE_SCHEMA = vol.Schema(
 
 
 class TCockpitCoordinator(DataUpdateCoordinator[dict]):
-    """Polls all vehicles of the account. Reading never wakes a car."""
+    """Polls vehicles + optional energy sites. Reading never wakes a car."""
 
     def __init__(self, hass: HomeAssistant, api: TCockpitApi) -> None:
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=timedelta(seconds=SCAN_INTERVAL_SECONDS))
         self.api = api
         self.vehicles: list[dict] = []
         self.info: dict = {}
+        self.energy: dict = {}
 
     async def _async_update_data(self) -> dict:
         try:
             self.vehicles = await self.api.vehicles()
-            return {v["vin"]: await self.api.state(v["vin"]) for v in self.vehicles}
+            vehicles = {v["vin"]: await self.api.state(v["vin"]) for v in self.vehicles}
+            try:
+                self.energy = await self.api.energy()
+            except TCockpitError as err:
+                _LOGGER.debug("energy fetch: %s", err)
+                self.energy = {"hasScope": False, "sites": [], "error": str(err)}
+            return {"vehicles": vehicles, "energy": self.energy}
         except TCockpitAuthError as err:
             raise ConfigEntryAuthFailed(str(err)) from err
         except TCockpitError as err:
@@ -59,6 +69,10 @@ class TCockpitCoordinator(DataUpdateCoordinator[dict]):
 
     def can(self, command: str) -> bool:
         return command in (self.info.get("commands") or [])
+
+    def vehicle_state(self, vin: str) -> dict:
+        data = self.data or {}
+        return (data.get("vehicles") or {}).get(vin) or {}
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

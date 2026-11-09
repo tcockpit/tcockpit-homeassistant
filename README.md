@@ -1,74 +1,60 @@
 # TCockpit für Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
+Offizielle HACS-Integration für [TCockpit](https://tcockpit.de) — Sensoren und Steuerung für Tesla-Fahrzeuge, optional Energy Site und Wall Connector (nur Anzeige).
 
-Bringt deinen Tesla aus der App **TCockpit** in Home Assistant: Status und alle Befehle, die die App kann – pro Fahrzeug ein Gerät.
+## Version 0.3.0
 
-**Deutsch** · [English below](#english)
+- Fahrzeug: Tessie-Parität für JP (Online-Status, Türen/Fenster einzeln, Covers für Kofferraum/Frunk/Ladeklappe/Fenster, Mediaplayer, Update-Anzeige, Navigation/Route, Lade-Details, Akkugesundheit aus Telemetrie)
+- Energy Site + Wall Connector: **read-only**, nur in Home Assistant (nicht in der App). Braucht Tesla-Scope `energy_device_data` (nach Re-Login)
+- Öffnen (Kofferraum, Frunk, Ladeklappe, Fenster lüften, Entriegeln) nur mit **Entriegeln erlauben**
+- Lesen weckt das Auto nie; Befehle laufen über dieselbe Queue wie die App
 
-## Was du bekommst
-- **Sensoren:** Akkustand, Reichweite, Ladestatus, Ladeleistung, Ladelimit, geladene Energie, Zeit bis voll, Innen-/Außentemperatur, Kilometerstand, Reifendruck, Software, Adresse, Verbindung
-- **Binär-Sensoren:** lädt, Ladeklappe, Tür/Fenster/Kofferraum/Frunk offen, Wächtermodus, Klima an
-- **Standort:** `device_tracker` pro Fahrzeug
-- **Steuern** (nur wenn dein Schlüssel „Steuern erlauben“ hat):
-  - **Klima:** Klima-Entity (An/Aus + Zieltemperatur), Defrost/Max, Klimahaltemodus (Halten/Hund/Camp), Sitzheizungen, Lenkradheizung, Bioweapon, Überhitzungsschutz, Zubehörstrom, Energiesparmodus
-  - **Laden:** Schalter Laden, Ladelimit (Number), Ladestrom (Number)
-  - **Buttons:** Hupe, Lichthupe, Aufwecken, Media (Play/Pause, Titel, Lautstärke), Ladeklappe schließen, Fenster schließen
-  - **Schloss:** verriegeln; entriegeln nur mit „Auch Entriegeln erlauben“
-  - **Öffnen** (braucht „Auch Entriegeln erlauben“): Kofferraum, Frunk, Ladeklappe öffnen, Fenster lüften
-  - **Service** `tcockpit.send_command` für jeden freigegebenen Befehl inkl. Lade-/Abfahrtsplan
+## Installation (HACS)
 
-Lesen weckt das Auto nie. Abgefragt wird alle 60 Sekunden der letzte Stand vom TCockpit-Server.
-Befehle laufen wie Befehle aus der App über den TCockpit-Server (Aufwecken, Wiederholen, Bestätigung als Mitteilung auf dem iPhone). Die Integration sendet nie von selbst einen Befehl.
+1. HACS → ⋮ → Benutzerdefinierte Repositories → `https://github.com/tcockpit/tcockpit-homeassistant` (Typ: Integration)
+2. TCockpit installieren / auf **v0.3.0** aktualisieren → Home Assistant neu starten
+3. Einstellungen → Geräte & Dienste → Integration hinzufügen → TCockpit
+4. API-Schlüssel aus der App: **Mehr → Home Assistant**
 
-## Installation
-1. In der TCockpit-App: **Mehr › Home Assistant → Schlüssel erstellen**. Für Schalter und Schloss „Steuern erlauben“ einschalten. Den Schlüssel kopieren (er wird nur einmal angezeigt).
-2. In Home Assistant **HACS / Marktplatz** öffnen → oben rechts **⋮ → Benutzerdefinierte Repositories**.
-3. `https://github.com/tcockpit/tcockpit-homeassistant` eintragen, Typ **Integration**, hinzufügen.
-4. **TCockpit** installieren und Home Assistant neu starten (bzw. in HACS auf die neue Version aktualisieren).
-5. **Einstellungen → Geräte & Dienste → Integration hinzufügen → TCockpit** und den Schlüssel einfügen.
+## Energy / Wallbox
 
-Schlüssel widerrufen: in der App unter Home Assistant nach links wischen. Home Assistant fragt dann nach einem neuen Schlüssel.
+Nach dem Update muss Michael in der TCockpit-App **erneut bei Tesla anmelden**, damit die Scopes `energy_device_data` und `energy_cmds` erteilt werden. Zusätzlich müssen diese Scopes in der Tesla-Developer-App freigeschaltet sein. Ohne Scope bleiben die Energy-Entitäten leer/`unavailable`.
 
-## Sicherheit
-- Der Server speichert nur einen Fingerabdruck des Schlüssels, nicht den Schlüssel selbst.
-- Ohne „Steuern erlauben“ kann der Schlüssel nur lesen.
-- Entriegeln und Öffnen (Kofferraum/Frunk/Ladeklappe/Fenster) brauchen zusätzlich „Auch Entriegeln erlauben“.
-- Höchstens ein Befehl pro Fahrzeug alle 10 Sekunden.
+## Nicht möglich (ehrlich)
+
+Homelink, Furz, Schlüsselloses Fahren, Valet, Sitzkühlung, Dashcam, „Benutzer anwesend“, automatische Sitz-/Lenkradklima, Batterieheizung, Reifendruck-*Warnungen*, Pack-Strom/Spannung, Modul-Temperaturen, Software-*Installieren* (nur Versionsanzeige) — fehlen in unserer Fleet-Telemetrie bzw. Command-Allowlist.
+
+## Lizenz
+
+MIT — siehe LICENSE.
 
 ---
 
-## English
+# TCockpit for Home Assistant
 
-Brings your Tesla from the **TCockpit** app into Home Assistant: status and every command the app supports – one device per vehicle.
+Official HACS integration for [TCockpit](https://tcockpit.de) — sensors and controls for Tesla vehicles, optional Energy Site and Wall Connector (display only).
 
-### Entities
-- **Sensors:** battery, range, charging state/power/limit/energy/ETA, temps, odometer, tires, software, address, presence
-- **Binary sensors:** charging, charge port, door/window/trunk/frunk open, sentry, climate on
-- **Location:** one `device_tracker` per vehicle
-- **Controls** (only if the key allows control):
-  - **Climate** entity (on/off + target temp), defrost/max, climate keeper, seat heaters, steering wheel heater, bioweapon, cabin overheat protection, keep accessory power, low power mode
-  - **Charging** switch, charge limit (number), charging amps (number)
-  - **Buttons:** honk, flash, wake, media, close charge port, close windows
-  - **Lock:** lock; unlock only with the unlock permission
-  - **Opening** (needs unlock permission): trunk, frunk, open charge port, vent windows
-  - **Service** `tcockpit.send_command` for any allowlisted command including schedules
+## Version 0.3.0
 
-Reading never wakes the car. Commands use the same durable queue as the app.
+- Vehicle: Tessie parity (online status, per-door/window, covers, media player, update entity, nav/route, charge details, battery health from telemetry)
+- Energy Site + Wall Connector: **read-only**, HA only (not in the app). Needs Tesla scope `energy_device_data` after re-login
+- Opening actions require **Allow unlock**; reading never wakes the car
 
-### Installation
-1. In the TCockpit app: **Mehr › Home Assistant → create key**. Enable control for switches/lock. Copy the key (shown once).
-2. In Home Assistant open **HACS / Marketplace** → **⋮ → Custom repositories**.
-3. Add `https://github.com/tcockpit/tcockpit-homeassistant`, type **Integration**.
-4. Install/update **TCockpit** and restart Home Assistant.
-5. **Settings → Devices & services → Add integration → TCockpit**, paste the key.
+## Install (HACS)
 
-## API (for developers)
-`Authorization: Bearer tck_…`
-- `GET /api/ha/v1/info` → `commands` lists what this key may call
-- `GET /api/ha/v1/vehicles`
-- `GET /api/ha/v1/vehicles/{vin}/state`
-- `POST /api/ha/v1/vehicles/{vin}/commands/{name}` with JSON body (`idempotencyKey` optional; extra fields are command parameters, e.g. `{"celsius":21}`, `{"percent":80}`, `{"amps":16}`, `{"mode":"dog"}`, `{"seat":0,"level":2}`)
-- `GET /api/ha/v1/jobs/{jobId}`
+1. HACS → ⋮ → Custom repositories → `https://github.com/tcockpit/tcockpit-homeassistant` (Integration)
+2. Install / update to **v0.3.0** → restart Home Assistant
+3. Settings → Devices & services → Add → TCockpit
+4. API key from the app: **More → Home Assistant**
 
-Kontakt / contact: kontakt@tcockpit.de
+## Energy / Wall Connector
+
+Re-login to Tesla in the TCockpit app so `energy_device_data` (+ `energy_cmds`) are granted. Those scopes must also be enabled on the Tesla developer app. Without the scope, energy entities stay empty.
+
+## Not available
+
+Homelink, fart, keyless driving, valet, seat cooling, dashcam, user present, auto seat/steer climate, battery heater, tire pressure *warnings*, pack current/voltage, module temps, software *install* (version display only).
+
+## License
+
+MIT — see LICENSE.
