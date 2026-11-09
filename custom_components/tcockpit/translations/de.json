@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "TCockpit",
-        "description": "API-Schlüssel aus der TCockpit-App einfügen (Mehr → Einstellungen → Home Assistant).",
+        "description": "API-Schlüssel aus der TCockpit-App einfügen (Mehr › Home Assistant).",
         "data": {
           "api_key": "API-Schlüssel",
           "url": "Server"

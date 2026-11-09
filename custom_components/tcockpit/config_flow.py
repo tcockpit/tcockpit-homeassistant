@@ -1,4 +1,4 @@
-"""Config flow: paste the TCockpit API key from the app (Mehr → Einstellungen → Home Assistant)."""
+"""Config flow: paste the TCockpit API key from the app (Mehr › Home Assistant)."""
 from __future__ import annotations
 
 import voluptuous as vol

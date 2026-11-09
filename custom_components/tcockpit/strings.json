@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "TCockpit",
-        "description": "Paste the API key from the TCockpit app (Mehr → Einstellungen → Home Assistant).",
+        "description": "Paste the API key from the TCockpit app (Mehr › Home Assistant).",
         "data": {
           "api_key": "API key",
           "url": "Server"
