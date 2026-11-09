@@ -49,6 +49,26 @@ SENSORS = [
     Desc(key="nominal_full_pack", field="nominalFullPackKWh", device_class=SensorDeviceClass.ENERGY, native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR),
     Desc(key="charge_cable", field="chargeCableType"),
     Desc(key="charge_port_latch", field="chargePortLatch"),
+    # v0.4.0
+    Desc(key="pack_voltage", field="packVoltageV", device_class=SensorDeviceClass.VOLTAGE, native_unit_of_measurement=UnitOfElectricPotential.VOLT, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="pack_current", field="packCurrentA", device_class=SensorDeviceClass.CURRENT, native_unit_of_measurement=UnitOfElectricCurrent.AMPERE, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="module_temp_max", field="moduleTempMaxC", device_class=SensorDeviceClass.TEMPERATURE, native_unit_of_measurement=UnitOfTemperature.CELSIUS, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="module_temp_min", field="moduleTempMinC", device_class=SensorDeviceClass.TEMPERATURE, native_unit_of_measurement=UnitOfTemperature.CELSIUS, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="idle_loss_30d", field="idleLossKWh30d", device_class=SensorDeviceClass.ENERGY, native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="phantom_drain", field="phantomDrainPercent", native_unit_of_measurement=PERCENTAGE, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="phantom_drain_per_day", field="phantomDrainPercentPerDay", native_unit_of_measurement=PERCENTAGE, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="speed_limit", field="speedLimitKmh", device_class=SensorDeviceClass.SPEED, native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR),
+    Desc(key="charge_rate", field="chargeRateKmh", device_class=SensorDeviceClass.SPEED, native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR, state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="soc_at_arrival", field="socAtArrival", native_unit_of_measurement=PERCENTAGE),
+    Desc(key="traffic_delay", field="trafficDelayMin", device_class=SensorDeviceClass.DURATION, native_unit_of_measurement=UnitOfTime.MINUTES),
+    Desc(key="homelink_device_count", field="homelinkDeviceCount", state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="center_display", field="centerDisplay"),
+    Desc(key="software_update_version", field="softwareUpdateVersion"),
+    Desc(key="software_update_download_percent", field="softwareUpdateDownloadPercent", native_unit_of_measurement=PERCENTAGE),
+    Desc(key="software_update_install_percent", field="softwareUpdateInstallPercent", native_unit_of_measurement=PERCENTAGE),
+    Desc(key="software_update_duration", field="softwareUpdateDurationMin", device_class=SensorDeviceClass.DURATION, native_unit_of_measurement=UnitOfTime.MINUTES),
+    Desc(key="seat_cooler_driver", field="seatCoolerDriver", state_class=SensorStateClass.MEASUREMENT),
+    Desc(key="seat_cooler_passenger", field="seatCoolerPassenger", state_class=SensorStateClass.MEASUREMENT),
 ]
 TIRES = [("tire_fl", "frontLeft"), ("tire_fr", "frontRight"), ("tire_rl", "rearLeft"), ("tire_rr", "rearRight")]
 

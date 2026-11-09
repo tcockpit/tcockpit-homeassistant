@@ -16,6 +16,11 @@ SEATS = [
     ("seat_heater_rear_center", "rearCenterSeatHeat", 3),
     ("seat_heater_rear_right", "rearRightSeatHeat", 4),
 ]
+COOL_OPTIONS = ["0", "1", "2", "3"]
+COOLERS = [
+    ("seat_cooler_driver", "seatCoolerDriver", 0),
+    ("seat_cooler_passenger", "seatCoolerPassenger", 1),
+]
 
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -26,6 +31,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
             ents.append(ClimateKeeper(c, v["vin"]))
         if c.can("seat_heater"):
             ents += [SeatHeater(c, v["vin"], key, field, seat) for key, field, seat in SEATS]
+        if c.can("seat_cooler"):
+            ents += [SeatCooler(c, v["vin"], key, field, seat) for key, field, seat in COOLERS]
     async_add_entities(ents)
 
 
@@ -65,4 +72,25 @@ class SeatHeater(TCockpitEntity, SelectEntity):
 
     async def async_select_option(self, option: str) -> None:
         await self.coordinator.api.command(self.vin, "seat_heater", seat=self._seat, level=int(option))
+        await self.coordinator.async_request_refresh()
+
+
+class SeatCooler(TCockpitEntity, SelectEntity):
+    _attr_options = COOL_OPTIONS
+
+    def __init__(self, coordinator, vin, key, field, seat) -> None:
+        super().__init__(coordinator, vin, key)
+        self._field = field
+        self._seat = seat
+
+    @property
+    def current_option(self):
+        value = self.state_data.get(self._field)
+        if value is None:
+            return None
+        level = max(0, min(3, int(value)))
+        return str(level)
+
+    async def async_select_option(self, option: str) -> None:
+        await self.coordinator.api.command(self.vin, "seat_cooler", seat=self._seat, level=int(option))
         await self.coordinator.async_request_refresh()

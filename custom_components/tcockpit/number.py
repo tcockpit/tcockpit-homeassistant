@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from homeassistant.components.number import NumberEntity, NumberMode
-from homeassistant.const import PERCENTAGE, UnitOfElectricCurrent
+from homeassistant.const import PERCENTAGE, UnitOfElectricCurrent, UnitOfSpeed
 
 from .const import DOMAIN
 from .entity import TCockpitEntity
@@ -16,6 +16,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
             ents.append(ChargeLimit(c, v["vin"]))
         if c.can("set_charge_current"):
             ents.append(ChargeAmps(c, v["vin"]))
+        if c.can("set_speed_limit"):
+            ents.append(SpeedLimit(c, v["vin"]))
     async_add_entities(ents)
 
 
@@ -59,4 +61,24 @@ class ChargeAmps(TCockpitEntity, NumberEntity):
 
     async def async_set_native_value(self, value: float) -> None:
         await self.coordinator.api.command(self.vin, "set_charge_current", amps=int(value))
+        await self.coordinator.async_request_refresh()
+
+
+class SpeedLimit(TCockpitEntity, NumberEntity):
+    """Vehicle PIN speed limit (km/h). Activate/deactivate via services with PIN."""
+    _attr_native_min_value = 50
+    _attr_native_max_value = 200
+    _attr_native_step = 5
+    _attr_native_unit_of_measurement = UnitOfSpeed.KILOMETERS_PER_HOUR
+    _attr_mode = NumberMode.BOX
+
+    def __init__(self, coordinator, vin) -> None:
+        super().__init__(coordinator, vin, "speed_limit_set")
+
+    @property
+    def native_value(self):
+        return self.state_data.get("speedLimitKmh")
+
+    async def async_set_native_value(self, value: float) -> None:
+        await self.coordinator.api.command(self.vin, "set_speed_limit", kmh=int(value))
         await self.coordinator.async_request_refresh()

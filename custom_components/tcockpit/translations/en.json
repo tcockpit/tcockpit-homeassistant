@@ -168,6 +168,63 @@
       },
       "vin": {
         "name": "Vehicle"
+      },
+      "pack_voltage": {
+        "name": "Pack voltage"
+      },
+      "pack_current": {
+        "name": "Pack current"
+      },
+      "module_temp_max": {
+        "name": "Battery module temp max"
+      },
+      "module_temp_min": {
+        "name": "Battery module temp min"
+      },
+      "idle_loss_30d": {
+        "name": "Idle loss (30d)"
+      },
+      "phantom_drain": {
+        "name": "Phantom drain (30d)"
+      },
+      "phantom_drain_per_day": {
+        "name": "Phantom drain per day"
+      },
+      "speed_limit": {
+        "name": "Speed limit"
+      },
+      "charge_rate": {
+        "name": "Charge rate"
+      },
+      "soc_at_arrival": {
+        "name": "SoC at arrival"
+      },
+      "traffic_delay": {
+        "name": "Traffic delay"
+      },
+      "homelink_device_count": {
+        "name": "Homelink devices"
+      },
+      "center_display": {
+        "name": "Center display"
+      },
+      "software_update_version": {
+        "name": "Software update version"
+      },
+      "software_update_download_percent": {
+        "name": "Update download"
+      },
+      "software_update_install_percent": {
+        "name": "Update install"
+      },
+      "software_update_duration": {
+        "name": "Update duration"
+      },
+      "seat_cooler_driver": {
+        "name": "Seat cooler driver"
+      },
+      "seat_cooler_passenger": {
+        "name": "Seat cooler passenger"
       }
     },
     "binary_sensor": {
@@ -245,6 +302,69 @@
       },
       "grid_status_active": {
         "name": "Grid active"
+      },
+      "battery_heater": {
+        "name": "Battery heater"
+      },
+      "driver_present": {
+        "name": "Driver present"
+      },
+      "valet_mode": {
+        "name": "Valet mode"
+      },
+      "guest_mode": {
+        "name": "Guest mode"
+      },
+      "auto_seat_climate_left": {
+        "name": "Auto seat climate left"
+      },
+      "auto_seat_climate_right": {
+        "name": "Auto seat climate right"
+      },
+      "auto_steering_wheel_heat": {
+        "name": "Auto steering wheel heat"
+      },
+      "seat_vent": {
+        "name": "Seat ventilation"
+      },
+      "homelink_nearby": {
+        "name": "Homelink nearby"
+      },
+      "speed_limit_mode": {
+        "name": "Speed limit active"
+      },
+      "software_update_available": {
+        "name": "Software update available"
+      },
+      "software_update_in_progress": {
+        "name": "Software update in progress"
+      },
+      "scheduled_charging_pending": {
+        "name": "Scheduled charging pending"
+      },
+      "tpms_soft_fl": {
+        "name": "TPMS soft warning FL"
+      },
+      "tpms_soft_fr": {
+        "name": "TPMS soft warning FR"
+      },
+      "tpms_soft_rl": {
+        "name": "TPMS soft warning RL"
+      },
+      "tpms_soft_rr": {
+        "name": "TPMS soft warning RR"
+      },
+      "tpms_hard_fl": {
+        "name": "TPMS hard warning FL"
+      },
+      "tpms_hard_fr": {
+        "name": "TPMS hard warning FR"
+      },
+      "tpms_hard_rl": {
+        "name": "TPMS hard warning RL"
+      },
+      "tpms_hard_rr": {
+        "name": "TPMS hard warning RR"
       }
     },
     "device_tracker": {
@@ -279,6 +399,15 @@
       },
       "low_power_mode": {
         "name": "Low power mode"
+      },
+      "auto_steering_wheel_heat": {
+        "name": "Auto steering wheel heat"
+      },
+      "auto_seat_climate_left": {
+        "name": "Auto seat climate left"
+      },
+      "auto_seat_climate_right": {
+        "name": "Auto seat climate right"
       }
     },
     "lock": {
@@ -297,6 +426,9 @@
       },
       "charge_amps": {
         "name": "Charging amps"
+      },
+      "speed_limit_set": {
+        "name": "Speed limit"
       }
     },
     "button": {
@@ -341,6 +473,12 @@
       },
       "media_volume_down": {
         "name": "Volume down"
+      },
+      "homelink": {
+        "name": "Homelink"
+      },
+      "boombox": {
+        "name": "Boombox"
       }
     },
     "select": {
@@ -367,6 +505,12 @@
       },
       "seat_heater_rear_right": {
         "name": "Seat heater rear right"
+      },
+      "seat_cooler_driver": {
+        "name": "Seat cooler driver"
+      },
+      "seat_cooler_passenger": {
+        "name": "Seat cooler passenger"
       }
     },
     "cover": {
@@ -392,6 +536,16 @@
       "update": {
         "name": "Update"
       }
+    }
+  },
+  "services": {
+    "valet_mode": {
+      "name": "Valet mode",
+      "description": "Enable or disable Valet mode (PIN required, never stored)."
+    },
+    "speed_limit": {
+      "name": "Speed limit",
+      "description": "Activate, deactivate, or clear speed-limit PIN (never stored)."
     }
   }
 }

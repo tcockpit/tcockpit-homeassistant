@@ -33,11 +33,27 @@ PLATFORMS = [
 ]
 
 SERVICE_SEND_COMMAND = "send_command"
+SERVICE_VALET = "valet_mode"
+SERVICE_SPEED_LIMIT = "speed_limit"
 SERVICE_SCHEMA = vol.Schema(
     {
         vol.Required("vin"): cv.string,
         vol.Required("command"): cv.string,
         vol.Optional("parameters", default={}): dict,
+    }
+)
+VALET_SCHEMA = vol.Schema(
+    {
+        vol.Required("vin"): cv.string,
+        vol.Required("enabled"): cv.boolean,
+        vol.Required("pin"): cv.string,
+    }
+)
+SPEED_LIMIT_SCHEMA = vol.Schema(
+    {
+        vol.Required("vin"): cv.string,
+        vol.Required("action"): vol.In(["activate", "deactivate", "clear_pin"]),
+        vol.Required("pin"): cv.string,
     }
 )
 
@@ -100,8 +116,44 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             raise HomeAssistantError(str(err)) from err
         await coordinator.async_request_refresh()
 
+    async def _valet(call: ServiceCall) -> None:
+        vin = str(call.data["vin"]).upper()
+        pin = str(call.data["pin"])
+        enabled = bool(call.data["enabled"])
+        cmd = "valet_on" if enabled else "valet_off"
+        if not coordinator.can(cmd):
+            raise HomeAssistantError(f"Command '{cmd}' not allowed for this API key")
+        if vin not in {v["vin"] for v in coordinator.vehicles}:
+            raise HomeAssistantError("Vehicle not found")
+        try:
+            await coordinator.api.command(vin, cmd, pin=pin)
+        except TCockpitError as err:
+            raise HomeAssistantError(str(err)) from err
+        await coordinator.async_request_refresh()
+
+    async def _speed_limit(call: ServiceCall) -> None:
+        vin = str(call.data["vin"]).upper()
+        pin = str(call.data["pin"])
+        action = str(call.data["action"])
+        cmd = {
+            "activate": "speed_limit_activate",
+            "deactivate": "speed_limit_deactivate",
+            "clear_pin": "speed_limit_clear_pin",
+        }[action]
+        if not coordinator.can(cmd):
+            raise HomeAssistantError(f"Command '{cmd}' not allowed for this API key")
+        if vin not in {v["vin"] for v in coordinator.vehicles}:
+            raise HomeAssistantError("Vehicle not found")
+        try:
+            await coordinator.api.command(vin, cmd, pin=pin)
+        except TCockpitError as err:
+            raise HomeAssistantError(str(err)) from err
+        await coordinator.async_request_refresh()
+
     if not hass.services.has_service(DOMAIN, SERVICE_SEND_COMMAND):
         hass.services.async_register(DOMAIN, SERVICE_SEND_COMMAND, _send_command, schema=SERVICE_SCHEMA)
+        hass.services.async_register(DOMAIN, SERVICE_VALET, _valet, schema=VALET_SCHEMA)
+        hass.services.async_register(DOMAIN, SERVICE_SPEED_LIMIT, _speed_limit, schema=SPEED_LIMIT_SCHEMA)
     return True
 
 
@@ -111,4 +163,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.data[DOMAIN].pop(entry.entry_id, None)
         if not hass.data[DOMAIN]:
             hass.services.async_remove(DOMAIN, SERVICE_SEND_COMMAND)
+            if hass.services.has_service(DOMAIN, SERVICE_VALET):
+                hass.services.async_remove(DOMAIN, SERVICE_VALET)
+            if hass.services.has_service(DOMAIN, SERVICE_SPEED_LIMIT):
+                hass.services.async_remove(DOMAIN, SERVICE_SPEED_LIMIT)
     return ok

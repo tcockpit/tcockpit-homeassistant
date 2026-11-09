@@ -168,6 +168,63 @@
       },
       "vin": {
         "name": "Fahrzeug"
+      },
+      "pack_voltage": {
+        "name": "Pack-Spannung"
+      },
+      "pack_current": {
+        "name": "Pack-Strom"
+      },
+      "module_temp_max": {
+        "name": "Batteriemodul-Temperatur max"
+      },
+      "module_temp_min": {
+        "name": "Batteriemodul-Temperatur min"
+      },
+      "idle_loss_30d": {
+        "name": "Standverlust (30 Tage)"
+      },
+      "phantom_drain": {
+        "name": "Phantomverbrauch (30 Tage)"
+      },
+      "phantom_drain_per_day": {
+        "name": "Phantomverbrauch pro Tag"
+      },
+      "speed_limit": {
+        "name": "Geschwindigkeitsbegrenzung"
+      },
+      "charge_rate": {
+        "name": "Laderate"
+      },
+      "soc_at_arrival": {
+        "name": "SoC bei Ankunft"
+      },
+      "traffic_delay": {
+        "name": "Verkehrsverzögerung"
+      },
+      "homelink_device_count": {
+        "name": "Homelink-Geräte"
+      },
+      "center_display": {
+        "name": "Mitteldisplay"
+      },
+      "software_update_version": {
+        "name": "Software-Update-Version"
+      },
+      "software_update_download_percent": {
+        "name": "Update-Download"
+      },
+      "software_update_install_percent": {
+        "name": "Update-Installation"
+      },
+      "software_update_duration": {
+        "name": "Update-Dauer"
+      },
+      "seat_cooler_driver": {
+        "name": "Sitzkühlung Fahrer"
+      },
+      "seat_cooler_passenger": {
+        "name": "Sitzkühlung Beifahrer"
       }
     },
     "binary_sensor": {
@@ -245,6 +302,69 @@
       },
       "grid_status_active": {
         "name": "Netz aktiv"
+      },
+      "battery_heater": {
+        "name": "Batterieheizung"
+      },
+      "driver_present": {
+        "name": "Fahrer anwesend"
+      },
+      "valet_mode": {
+        "name": "Valet-Modus"
+      },
+      "guest_mode": {
+        "name": "Gastmodus"
+      },
+      "auto_seat_climate_left": {
+        "name": "Automatische Sitzklimatisierung links"
+      },
+      "auto_seat_climate_right": {
+        "name": "Automatische Sitzklimatisierung rechts"
+      },
+      "auto_steering_wheel_heat": {
+        "name": "Automatische Lenkradheizung"
+      },
+      "seat_vent": {
+        "name": "Sitzlüftung"
+      },
+      "homelink_nearby": {
+        "name": "Homelink in der Nähe"
+      },
+      "speed_limit_mode": {
+        "name": "Geschwindigkeitsbegrenzung aktiv"
+      },
+      "software_update_available": {
+        "name": "Software-Update verfügbar"
+      },
+      "software_update_in_progress": {
+        "name": "Software-Update läuft"
+      },
+      "scheduled_charging_pending": {
+        "name": "Geplantes Laden ausstehend"
+      },
+      "tpms_soft_fl": {
+        "name": "Reifendruckwarnung weich VL"
+      },
+      "tpms_soft_fr": {
+        "name": "Reifendruckwarnung weich VR"
+      },
+      "tpms_soft_rl": {
+        "name": "Reifendruckwarnung weich HL"
+      },
+      "tpms_soft_rr": {
+        "name": "Reifendruckwarnung weich HR"
+      },
+      "tpms_hard_fl": {
+        "name": "Reifendruckwarnung hart VL"
+      },
+      "tpms_hard_fr": {
+        "name": "Reifendruckwarnung hart VR"
+      },
+      "tpms_hard_rl": {
+        "name": "Reifendruckwarnung hart HL"
+      },
+      "tpms_hard_rr": {
+        "name": "Reifendruckwarnung hart HR"
       }
     },
     "device_tracker": {
@@ -279,6 +399,15 @@
       },
       "low_power_mode": {
         "name": "Energiesparmodus"
+      },
+      "auto_steering_wheel_heat": {
+        "name": "Automatische Lenkradheizung"
+      },
+      "auto_seat_climate_left": {
+        "name": "Automatische Sitzklimatisierung links"
+      },
+      "auto_seat_climate_right": {
+        "name": "Automatische Sitzklimatisierung rechts"
       }
     },
     "lock": {
@@ -297,6 +426,9 @@
       },
       "charge_amps": {
         "name": "Ladestrom"
+      },
+      "speed_limit_set": {
+        "name": "Geschwindigkeitsbegrenzung"
       }
     },
     "button": {
@@ -341,6 +473,12 @@
       },
       "media_volume_down": {
         "name": "Leiser"
+      },
+      "homelink": {
+        "name": "Homelink"
+      },
+      "boombox": {
+        "name": "Boombox / Furz"
       }
     },
     "select": {
@@ -367,6 +505,12 @@
       },
       "seat_heater_rear_right": {
         "name": "Sitzheizung hinten rechts"
+      },
+      "seat_cooler_driver": {
+        "name": "Sitzkühlung Fahrer"
+      },
+      "seat_cooler_passenger": {
+        "name": "Sitzkühlung Beifahrer"
       }
     },
     "cover": {
@@ -392,6 +536,16 @@
       "update": {
         "name": "Update"
       }
+    }
+  },
+  "services": {
+    "valet_mode": {
+      "name": "Valet-Modus",
+      "description": "Valet-Modus ein/aus (PIN nur für diesen Aufruf, nie gespeichert)."
+    },
+    "speed_limit": {
+      "name": "Geschwindigkeitsbegrenzung",
+      "description": "Aktivieren, deaktivieren oder PIN löschen (nie gespeichert)."
     }
   }
 }

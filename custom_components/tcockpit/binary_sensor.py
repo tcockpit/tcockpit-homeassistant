@@ -19,6 +19,20 @@ ITEMS = [
     ("climate_on", "climateOn", None),
     ("preconditioning", "preconditioning", None),
     ("cabin_overheat_protection", "cabinOverheatProtection", None),
+    # v0.4.0
+    ("battery_heater", "batteryHeaterOn", None),
+    ("driver_present", "driverPresent", BinarySensorDeviceClass.OCCUPANCY),
+    ("valet_mode", "valetMode", None),
+    ("guest_mode", "guestMode", None),
+    ("auto_seat_climate_left", "autoSeatClimateLeft", None),
+    ("auto_seat_climate_right", "autoSeatClimateRight", None),
+    ("auto_steering_wheel_heat", "autoSteeringWheelHeat", None),
+    ("seat_vent", "seatVentEnabled", None),
+    ("homelink_nearby", "homelinkNearby", None),
+    ("speed_limit_mode", "speedLimitMode", None),
+    ("software_update_available", "softwareUpdateAvailable", BinarySensorDeviceClass.UPDATE),
+    ("software_update_in_progress", "softwareUpdateInProgress", None),
+    ("scheduled_charging_pending", "scheduledChargingPending", None),
 ]
 
 # Per-door / per-window (Tessie parity)
@@ -52,6 +66,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
         ents += [Flag(c, vin, k, f, d) for k, f, d in ITEMS]
         ents += [DoorFlag(c, vin, k, f, d) for k, f, d in DOOR_KEYS]
         ents += [WindowFlag(c, vin, k, f, d) for k, f, d in WINDOW_KEYS]
+        ents += [TpmsWarn(c, vin, k, kind, corner) for k, kind, corner in TPMS_WARN]
     for site in (c.energy or {}).get("sites") or []:
         sid = str(site.get("id") or "")
         sname = site.get("name") or "Energy Site"
@@ -95,6 +110,21 @@ class WindowFlag(TCockpitEntity, BinarySensorEntity):
     def is_on(self):
         wins = self.state_data.get("windows") or {}
         value = wins.get(self._field)
+        return None if value is None else bool(value)
+
+
+
+class TpmsWarn(TCockpitEntity, BinarySensorEntity):
+    _attr_device_class = BinarySensorDeviceClass.PROBLEM
+
+    def __init__(self, coordinator, vin, key, kind, corner) -> None:
+        super().__init__(coordinator, vin, key)
+        self._kind, self._corner = kind, corner
+
+    @property
+    def is_on(self):
+        bag = self.state_data.get("tpmsSoft" if self._kind == "soft" else "tpmsHard") or {}
+        value = bag.get(self._corner)
         return None if value is None else bool(value)
 
 

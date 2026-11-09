@@ -22,6 +22,8 @@ ITEMS = [
     ("media_prev_track", "media_prev_track"),
     ("media_volume_up", "media_volume_up"),
     ("media_volume_down", "media_volume_down"),
+    ("homelink", "homelink"),
+    ("boombox", "boombox"),
 ]
 
 

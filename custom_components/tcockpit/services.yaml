@@ -20,3 +20,43 @@ send_command:
         minute: 0
       selector:
         object:
+
+valet_mode:
+  name: Valet mode
+  description: Enable or disable Valet mode. PIN is required for this call only and is never stored.
+  fields:
+    vin:
+      required: true
+      selector:
+        text:
+    enabled:
+      required: true
+      selector:
+        boolean:
+    pin:
+      required: true
+      example: "1234"
+      selector:
+        text:
+
+speed_limit:
+  name: Speed limit
+  description: Activate, deactivate, or clear the vehicle speed-limit PIN. PIN is required for this call only and is never stored.
+  fields:
+    vin:
+      required: true
+      selector:
+        text:
+    action:
+      required: true
+      selector:
+        select:
+          options:
+            - activate
+            - deactivate
+            - clear_pin
+    pin:
+      required: true
+      example: "1234"
+      selector:
+        text:
