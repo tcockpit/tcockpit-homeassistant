@@ -1,0 +1,128 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TCockpit",
+        "description": "Paste the API key from the TCockpit app (Mehr → Einstellungen → Home Assistant).",
+        "data": {
+          "api_key": "API key",
+          "url": "Server"
+        }
+      },
+      "reauth_confirm": {
+        "title": "TCockpit",
+        "description": "The key is invalid or revoked. Please paste a new one.",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid or revoked key",
+      "cannot_connect": "Cannot reach the TCockpit server"
+    },
+    "abort": {
+      "already_configured": "Already configured",
+      "reauth_successful": "Key updated"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "name": "Battery level"
+      },
+      "range": {
+        "name": "Range"
+      },
+      "charging_state": {
+        "name": "Charging state"
+      },
+      "charger_power": {
+        "name": "Charger power"
+      },
+      "charge_limit": {
+        "name": "Charge limit"
+      },
+      "charge_energy_added": {
+        "name": "Energy added"
+      },
+      "time_to_full": {
+        "name": "Time to full"
+      },
+      "inside_temp": {
+        "name": "Inside temperature"
+      },
+      "outside_temp": {
+        "name": "Outside temperature"
+      },
+      "odometer": {
+        "name": "Odometer"
+      },
+      "presence": {
+        "name": "Presence"
+      },
+      "address": {
+        "name": "Address"
+      },
+      "software": {
+        "name": "Software version"
+      },
+      "tire_fl": {
+        "name": "Tire front left"
+      },
+      "tire_fr": {
+        "name": "Tire front right"
+      },
+      "tire_rl": {
+        "name": "Tire rear left"
+      },
+      "tire_rr": {
+        "name": "Tire rear right"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "Charging"
+      },
+      "charge_port_open": {
+        "name": "Charge port open"
+      },
+      "doors_open": {
+        "name": "Door open"
+      },
+      "windows_open": {
+        "name": "Window open"
+      },
+      "trunk_open": {
+        "name": "Trunk open"
+      },
+      "frunk_open": {
+        "name": "Frunk open"
+      },
+      "sentry_mode": {
+        "name": "Sentry mode"
+      },
+      "climate_on": {
+        "name": "Climate on"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Location"
+      }
+    },
+    "switch": {
+      "climate": {
+        "name": "Climate"
+      },
+      "charging_switch": {
+        "name": "Charging"
+      }
+    },
+    "lock": {
+      "door_lock": {
+        "name": "Door lock"
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TCockpit",
+        "description": "API-Schlüssel aus der TCockpit-App einfügen (Mehr → Einstellungen → Home Assistant).",
+        "data": {
+          "api_key": "API-Schlüssel",
+          "url": "Server"
+        }
+      },
+      "reauth_confirm": {
+        "title": "TCockpit",
+        "description": "Der Schlüssel ist ungültig oder widerrufen. Bitte einen neuen einfügen.",
+        "data": {
+          "api_key": "API-Schlüssel"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Schlüssel ungültig oder widerrufen",
+      "cannot_connect": "TCockpit-Server nicht erreichbar"
+    },
+    "abort": {
+      "already_configured": "Schon eingerichtet",
+      "reauth_successful": "Schlüssel aktualisiert"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "name": "Akkustand"
+      },
+      "range": {
+        "name": "Reichweite"
+      },
+      "charging_state": {
+        "name": "Ladestatus"
+      },
+      "charger_power": {
+        "name": "Ladeleistung"
+      },
+      "charge_limit": {
+        "name": "Ladelimit"
+      },
+      "charge_energy_added": {
+        "name": "Geladene Energie"
+      },
+      "time_to_full": {
+        "name": "Zeit bis voll"
+      },
+      "inside_temp": {
+        "name": "Innentemperatur"
+      },
+      "outside_temp": {
+        "name": "Außentemperatur"
+      },
+      "odometer": {
+        "name": "Kilometerstand"
+      },
+      "presence": {
+        "name": "Verbindung"
+      },
+      "address": {
+        "name": "Adresse"
+      },
+      "software": {
+        "name": "Software"
+      },
+      "tire_fl": {
+        "name": "Reifen vorne links"
+      },
+      "tire_fr": {
+        "name": "Reifen vorne rechts"
+      },
+      "tire_rl": {
+        "name": "Reifen hinten links"
+      },
+      "tire_rr": {
+        "name": "Reifen hinten rechts"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "Lädt"
+      },
+      "charge_port_open": {
+        "name": "Ladeklappe offen"
+      },
+      "doors_open": {
+        "name": "Tür offen"
+      },
+      "windows_open": {
+        "name": "Fenster offen"
+      },
+      "trunk_open": {
+        "name": "Kofferraum offen"
+      },
+      "frunk_open": {
+        "name": "Frunk offen"
+      },
+      "sentry_mode": {
+        "name": "Wächtermodus"
+      },
+      "climate_on": {
+        "name": "Klima an"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Standort"
+      }
+    },
+    "switch": {
+      "climate": {
+        "name": "Klima"
+      },
+      "charging_switch": {
+        "name": "Laden"
+      }
+    },
+    "lock": {
+      "door_lock": {
+        "name": "Türschloss"
+      }
+    }
+  }
+}
