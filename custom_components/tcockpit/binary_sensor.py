@@ -49,6 +49,18 @@ WINDOW_KEYS = [
     ("rear_passenger_window", "rearPassenger", BinarySensorDeviceClass.WINDOW),
 ]
 
+# TPMS soft/hard warnings per corner (server fields tpmsSoft / tpmsHard)
+TPMS_WARN = [
+    ("tpms_soft_fl", "soft", "frontLeft"),
+    ("tpms_soft_fr", "soft", "frontRight"),
+    ("tpms_soft_rl", "soft", "rearLeft"),
+    ("tpms_soft_rr", "soft", "rearRight"),
+    ("tpms_hard_fl", "hard", "frontLeft"),
+    ("tpms_hard_fr", "hard", "frontRight"),
+    ("tpms_hard_rl", "hard", "rearLeft"),
+    ("tpms_hard_rr", "hard", "rearRight"),
+]
+
 ENERGY_FLAGS = [
     ("backup_capable", "backupCapable", None),
     ("grid_services_active", "gridServicesActive", None),
