@@ -164,7 +164,19 @@
         "name": "Leistung"
       },
       "wall_connector_state": {
-        "name": "Zustand"
+        "name": "Zustand",
+        "state": {
+          "booting": "Startet",
+          "charging": "Lädt",
+          "disconnected": "Getrennt",
+          "connected": "Verbunden",
+          "scheduled": "Geplant",
+          "negotiating": "Verhandelt",
+          "error": "Fehler",
+          "charging_finished": "Laden beendet",
+          "waiting_car": "Warte auf Auto",
+          "charging_reduced": "Laden reduziert"
+        }
       },
       "vin": {
         "name": "Fahrzeug"

@@ -164,7 +164,19 @@
         "name": "Power"
       },
       "wall_connector_state": {
-        "name": "State"
+        "name": "State",
+        "state": {
+          "booting": "Booting",
+          "charging": "Charging",
+          "disconnected": "Disconnected",
+          "connected": "Connected",
+          "scheduled": "Scheduled",
+          "negotiating": "Negotiating",
+          "error": "Error",
+          "charging_finished": "Charging finished",
+          "waiting_car": "Waiting car",
+          "charging_reduced": "Charging reduced"
+        }
       },
       "vin": {
         "name": "Vehicle"

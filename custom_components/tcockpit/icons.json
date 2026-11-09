@@ -1,0 +1,15 @@
+{
+  "entity": {
+    "sensor": {
+      "wall_connector_power": {
+        "default": "mdi:ev-station"
+      },
+      "wall_connector_state": {
+        "default": "mdi:ev-station"
+      },
+      "vin": {
+        "default": "mdi:car-electric"
+      }
+    }
+  }
+}

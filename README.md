@@ -2,6 +2,14 @@
 
 Offizielle HACS-Integration für [TCockpit](https://tcockpit.de) — Sensoren und Steuerung für Tesla-Fahrzeuge, optional Energy Site und Wall Connector (nur Anzeige).
 
+## Version 0.4.1
+
+- Wall Connector: **Zustand** als Enum mit DE/EN-Übersetzung (Fleet-Codes wie HA-Core **Tessie**: 0 Startet, 1 Lädt, 2 Getrennt, **4 Verbunden**, …)
+- Geräte-Info: Seriennummer (DIN), Modell **Wall Connector Gen 3**, Name wie Tessie
+- Leistung in **kW** (2 Nachkommastellen), Mini-Negativwerte → 0 (kein „-0 W“)
+- Icons `mdi:ev-station` / `mdi:car-electric`
+- Entity-unique_ids unverändert (`{site}-{din}-wall_connector_*`); Anzeigename ggf. „Wall Connector“
+
 ## Version 0.4.0
 
 - Alles aus 0.3.0, plus Fleet-Telemetrie/Befehle:
@@ -18,7 +26,7 @@ Offizielle HACS-Integration für [TCockpit](https://tcockpit.de) — Sensoren un
 ## Installation (HACS)
 
 1. HACS → ⋮ → Benutzerdefinierte Repositories → `https://github.com/tcockpit/tcockpit-homeassistant` (Typ: Integration)
-2. TCockpit installieren / auf **v0.4.0** aktualisieren → Home Assistant neu starten
+2. TCockpit installieren / auf **v0.4.1** aktualisieren → Home Assistant neu starten
 3. Einstellungen → Geräte & Dienste → Integration hinzufügen → TCockpit
 4. API-Schlüssel aus der App: **Mehr → Home Assistant**
 

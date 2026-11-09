@@ -5,11 +5,11 @@ from dataclasses import dataclass
 
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorEntityDescription, SensorStateClass
 from homeassistant.const import (
-    PERCENTAGE, UnitOfElectricCurrent, UnitOfElectricPotential, UnitOfEnergy,
+    PERCENTAGE, EntityCategory, UnitOfElectricCurrent, UnitOfElectricPotential, UnitOfEnergy,
     UnitOfLength, UnitOfPower, UnitOfPressure, UnitOfSpeed, UnitOfTemperature, UnitOfTime,
 )
 
-from .const import DOMAIN
+from .const import DOMAIN, WALL_CONNECTOR_STATES
 from .entity import TCockpitEntity, TCockpitEnergyEntity, TCockpitWallConnectorEntity
 
 
@@ -144,29 +144,61 @@ class EnergySensor(TCockpitEnergyEntity, SensorEntity):
         return self.site.get(self._field)
 
 
+def _clamp_power_w(value):
+    """Fleet occasionally reports tiny negative float noise near idle (e.g. -0.027)."""
+    if value is None:
+        return None
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return value
+    if abs(v) < 0.5:
+        return 0.0
+    return v
+
+
 class WallPowerSensor(TCockpitWallConnectorEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.POWER
     _attr_native_unit_of_measurement = UnitOfPower.WATT
+    _attr_suggested_unit_of_measurement = UnitOfPower.KILO_WATT
+    _attr_suggested_display_precision = 2
     _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_icon = "mdi:ev-station"
 
     def __init__(self, coordinator, site_id, din, name) -> None:
         super().__init__(coordinator, site_id, din, "wall_connector_power", name)
 
     @property
     def native_value(self):
-        return self.connector.get("powerW")
+        return _clamp_power_w(self.connector.get("powerW"))
 
 
 class WallStateSensor(TCockpitWallConnectorEntity, SensorEntity):
+    """Zustand as enum — Fleet codes via TessieWallConnectorStates (HA core tessie)."""
+
+    _attr_device_class = SensorDeviceClass.ENUM
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_options = list(WALL_CONNECTOR_STATES.values())
+    _attr_icon = "mdi:ev-station"
+
     def __init__(self, coordinator, site_id, din, name) -> None:
         super().__init__(coordinator, site_id, din, "wall_connector_state", name)
 
     @property
     def native_value(self):
-        return self.connector.get("state")
+        raw = self.connector.get("state")
+        if raw is None:
+            return None
+        try:
+            code = int(raw)
+        except (TypeError, ValueError):
+            return None
+        return WALL_CONNECTOR_STATES.get(code)
 
 
 class WallVinSensor(TCockpitWallConnectorEntity, SensorEntity):
+    _attr_icon = "mdi:car-electric"
+
     def __init__(self, coordinator, site_id, din, name) -> None:
         super().__init__(coordinator, site_id, din, "vin", name)
 
