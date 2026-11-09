@@ -2,6 +2,10 @@
 
 Offizielle HACS-Integration für [TCockpit](https://tcockpit.de) — Sensoren und Steuerung für Tesla-Fahrzeuge, optional Energy Site und Wall Connector (nur Anzeige).
 
+## Version 0.4.2
+
+- Fix: `TPMS_WARN` fehlte in `binary_sensor.py` → NameError, **keine** Binary-Sensoren geladen (online/Status, Türen, Fenster, TPMS). Unique-IDs unverändert (`{vin}_online` usw.).
+
 ## Version 0.4.1
 
 - Wall Connector: **Zustand** als Enum mit DE/EN-Übersetzung (Fleet-Codes wie HA-Core **Tessie**: 0 Startet, 1 Lädt, 2 Getrennt, **4 Verbunden**, …)
@@ -26,7 +30,7 @@ Offizielle HACS-Integration für [TCockpit](https://tcockpit.de) — Sensoren un
 ## Installation (HACS)
 
 1. HACS → ⋮ → Benutzerdefinierte Repositories → `https://github.com/tcockpit/tcockpit-homeassistant` (Typ: Integration)
-2. TCockpit installieren / auf **v0.4.1** aktualisieren → Home Assistant neu starten
+2. TCockpit installieren / auf **v0.4.2** aktualisieren → Home Assistant neu starten
 3. Einstellungen → Geräte & Dienste → Integration hinzufügen → TCockpit
 4. API-Schlüssel aus der App: **Mehr → Home Assistant**
 
