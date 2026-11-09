@@ -16,7 +16,7 @@ Lesen weckt das Auto nie. Abgefragt wird alle 60 Sekunden der letzte Stand vom T
 Befehle laufen wie Befehle aus der App über den TCockpit-Server (Aufwecken, Wiederholen, Bestätigung als Mitteilung auf dem iPhone). Die Integration sendet nie von selbst einen Befehl.
 
 ## Installation
-1. In der TCockpit-App: **Mehr → Einstellungen → Home Assistant → Schlüssel erstellen**. Für Schalter und Schloss „Steuern erlauben“ einschalten. Den Schlüssel kopieren (er wird nur einmal angezeigt).
+1. In der TCockpit-App: **Mehr › Home Assistant → Schlüssel erstellen**. Für Schalter und Schloss „Steuern erlauben“ einschalten. Den Schlüssel kopieren (er wird nur einmal angezeigt).
 2. In Home Assistant **HACS** öffnen → oben rechts **⋮ → Benutzerdefinierte Repositories**.
 3. `https://github.com/tcockpit/tcockpit-homeassistant` eintragen, Typ **Integration**, hinzufügen.
 4. **TCockpit** in HACS installieren und Home Assistant neu starten.
@@ -46,7 +46,7 @@ Reading never wakes the car; the last known state is polled every 60 seconds.
 Commands go through the TCockpit server exactly like app commands (wake, retry, confirmation push to your iPhone). The integration never sends a command on its own.
 
 ### Installation
-1. In the TCockpit app: **Mehr → Einstellungen → Home Assistant → Schlüssel erstellen**. Enable "Steuern erlauben" for switches and lock. Copy the key (shown only once).
+1. In the TCockpit app: **Mehr › Home Assistant → Schlüssel erstellen**. Enable "Steuern erlauben" for switches and lock. Copy the key (shown only once).
 2. In Home Assistant open **HACS** → top right **⋮ → Custom repositories**.
 3. Add `https://github.com/tcockpit/tcockpit-homeassistant`, type **Integration**.
 4. Install **TCockpit** in HACS and restart Home Assistant.
