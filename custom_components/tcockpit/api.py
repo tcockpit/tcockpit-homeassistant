@@ -46,7 +46,8 @@ class TCockpitApi:
     async def state(self, vin: str) -> dict:
         return await self._request("GET", f"/api/ha/v1/vehicles/{vin}/state")
 
-    async def command(self, vin: str, name: str) -> dict:
-        # The TCockpit server queues it like an app command (wake, retry, push confirmation).
-        return await self._request("POST", f"/api/ha/v1/vehicles/{vin}/commands/{name}",
-                                   {"idempotencyKey": secrets.token_urlsafe(18)})
+    async def command(self, vin: str, name: str, **params: Any) -> dict:
+        # Queued like an app command (wake, retry, push confirmation). Never auto-sent.
+        body = {"idempotencyKey": secrets.token_urlsafe(18)}
+        body.update({k: v for k, v in params.items() if v is not None})
+        return await self._request("POST", f"/api/ha/v1/vehicles/{vin}/commands/{name}", body)

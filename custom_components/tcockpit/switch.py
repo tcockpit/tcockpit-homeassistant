@@ -1,9 +1,4 @@
-"""Controls: climate and charging. Only created when the API key allows control.
-
-A switch sends ONE command to the TCockpit server, which queues it exactly like a
-command from the app (it may wake the car, retries, and pushes the result to your
-iPhone). Nothing is sent automatically by this integration.
-"""
+"""Toggleable controls. Only created when the API key allows the matching command."""
 from __future__ import annotations
 
 from homeassistant.components.switch import SwitchEntity
@@ -11,14 +6,27 @@ from homeassistant.components.switch import SwitchEntity
 from .const import DOMAIN
 from .entity import TCockpitEntity
 
-ITEMS = [("climate", "climateOn", "climate_on", "climate_off"), ("charging_switch", "charging", "charge_start", "charge_stop")]
+# (unique_key, state_field, on_cmd, off_cmd)
+ITEMS = [
+    ("charging_switch", "charging", "charge_start", "charge_stop"),
+    ("sentry", "sentryMode", "sentry_on", "sentry_off"),
+    ("defrost", "defrostOn", "defrost_on", "defrost_off"),
+    ("steering_wheel_heater", "steeringWheelHeat", "steering_wheel_heater_on", "steering_wheel_heater_off"),
+    ("bioweapon", "bioweaponMode", "bioweapon_on", "bioweapon_off"),
+    ("keep_accessory_power", "keepAccessoryPower", "keep_accessory_power_on", "keep_accessory_power_off"),
+    ("cabin_overheat_protection", "cabinOverheatProtection", "cabin_overheat_protection_on", "cabin_overheat_protection_off"),
+    ("low_power_mode", "lowPowerMode", "low_power_mode_on", "low_power_mode_off"),
+]
 
 
 async def async_setup_entry(hass, entry, async_add_entities):
     c = hass.data[DOMAIN][entry.entry_id]
-    if not c.can("climate_on"):
-        return
-    async_add_entities(Control(c, v["vin"], *item) for v in c.vehicles for item in ITEMS)
+    ents = []
+    for v in c.vehicles:
+        for key, field, on_cmd, off_cmd in ITEMS:
+            if c.can(on_cmd):
+                ents.append(Control(c, v["vin"], key, field, on_cmd, off_cmd))
+    async_add_entities(ents)
 
 
 class Control(TCockpitEntity, SwitchEntity):

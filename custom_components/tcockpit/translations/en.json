@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "TCockpit",
-        "description": "Paste the API key from the TCockpit app (Mehr › Home Assistant).",
+        "description": "Paste the API key from the TCockpit app (More › Home Assistant).",
         "data": {
           "api_key": "API key",
           "url": "Server"
@@ -112,16 +112,117 @@
       }
     },
     "switch": {
-      "climate": {
-        "name": "Climate"
-      },
       "charging_switch": {
         "name": "Charging"
+      },
+      "sentry": {
+        "name": "Sentry mode"
+      },
+      "defrost": {
+        "name": "Defrost / Max climate"
+      },
+      "steering_wheel_heater": {
+        "name": "Steering wheel heater"
+      },
+      "bioweapon": {
+        "name": "Bioweapon mode"
+      },
+      "keep_accessory_power": {
+        "name": "Keep accessory power"
+      },
+      "cabin_overheat_protection": {
+        "name": "Cabin overheat protection"
+      },
+      "low_power_mode": {
+        "name": "Low power mode"
       }
     },
     "lock": {
       "door_lock": {
         "name": "Door lock"
+      }
+    },
+    "climate": {
+      "climate": {
+        "name": "Climate"
+      }
+    },
+    "number": {
+      "charge_limit_set": {
+        "name": "Charge limit"
+      },
+      "charge_amps": {
+        "name": "Charging amps"
+      }
+    },
+    "button": {
+      "trunk": {
+        "name": "Trunk"
+      },
+      "frunk": {
+        "name": "Frunk"
+      },
+      "open_charge_port": {
+        "name": "Open charge port"
+      },
+      "close_charge_port": {
+        "name": "Close charge port"
+      },
+      "vent_windows": {
+        "name": "Vent windows"
+      },
+      "close_windows": {
+        "name": "Close windows"
+      },
+      "honk": {
+        "name": "Honk"
+      },
+      "flash_lights": {
+        "name": "Flash lights"
+      },
+      "wake_up": {
+        "name": "Wake up"
+      },
+      "media_toggle_playback": {
+        "name": "Play/Pause"
+      },
+      "media_next_track": {
+        "name": "Next track"
+      },
+      "media_prev_track": {
+        "name": "Previous track"
+      },
+      "media_volume_up": {
+        "name": "Volume up"
+      },
+      "media_volume_down": {
+        "name": "Volume down"
+      }
+    },
+    "select": {
+      "climate_keeper": {
+        "name": "Climate keeper",
+        "state": {
+          "off": "Off",
+          "hold": "Keep",
+          "dog": "Dog",
+          "camp": "Camp"
+        }
+      },
+      "seat_heater_driver": {
+        "name": "Seat heater driver"
+      },
+      "seat_heater_passenger": {
+        "name": "Seat heater passenger"
+      },
+      "seat_heater_rear_left": {
+        "name": "Seat heater rear left"
+      },
+      "seat_heater_rear_center": {
+        "name": "Seat heater rear center"
+      },
+      "seat_heater_rear_right": {
+        "name": "Seat heater rear right"
       }
     }
   }

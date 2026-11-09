@@ -112,16 +112,117 @@
       }
     },
     "switch": {
-      "climate": {
-        "name": "Klima"
-      },
       "charging_switch": {
         "name": "Laden"
+      },
+      "sentry": {
+        "name": "Wächtermodus"
+      },
+      "defrost": {
+        "name": "Defrost / Max Klima"
+      },
+      "steering_wheel_heater": {
+        "name": "Lenkradheizung"
+      },
+      "bioweapon": {
+        "name": "Bioweapon-Modus"
+      },
+      "keep_accessory_power": {
+        "name": "Zubehörstrom halten"
+      },
+      "cabin_overheat_protection": {
+        "name": "Überhitzungsschutz"
+      },
+      "low_power_mode": {
+        "name": "Energiesparmodus"
       }
     },
     "lock": {
       "door_lock": {
         "name": "Türschloss"
+      }
+    },
+    "climate": {
+      "climate": {
+        "name": "Klima"
+      }
+    },
+    "number": {
+      "charge_limit_set": {
+        "name": "Ladelimit"
+      },
+      "charge_amps": {
+        "name": "Ladestrom"
+      }
+    },
+    "button": {
+      "trunk": {
+        "name": "Kofferraum"
+      },
+      "frunk": {
+        "name": "Frunk"
+      },
+      "open_charge_port": {
+        "name": "Ladeklappe öffnen"
+      },
+      "close_charge_port": {
+        "name": "Ladeklappe schließen"
+      },
+      "vent_windows": {
+        "name": "Fenster Lüften"
+      },
+      "close_windows": {
+        "name": "Fenster schließen"
+      },
+      "honk": {
+        "name": "Hupe"
+      },
+      "flash_lights": {
+        "name": "Lichthupe"
+      },
+      "wake_up": {
+        "name": "Aufwecken"
+      },
+      "media_toggle_playback": {
+        "name": "Play/Pause"
+      },
+      "media_next_track": {
+        "name": "Nächster Titel"
+      },
+      "media_prev_track": {
+        "name": "Vorheriger Titel"
+      },
+      "media_volume_up": {
+        "name": "Lauter"
+      },
+      "media_volume_down": {
+        "name": "Leiser"
+      }
+    },
+    "select": {
+      "climate_keeper": {
+        "name": "Klimahaltemodus",
+        "state": {
+          "off": "Aus",
+          "hold": "Halten",
+          "dog": "Hund",
+          "camp": "Camp"
+        }
+      },
+      "seat_heater_driver": {
+        "name": "Sitzheizung Fahrer"
+      },
+      "seat_heater_passenger": {
+        "name": "Sitzheizung Beifahrer"
+      },
+      "seat_heater_rear_left": {
+        "name": "Sitzheizung hinten links"
+      },
+      "seat_heater_rear_center": {
+        "name": "Sitzheizung hinten Mitte"
+      },
+      "seat_heater_rear_right": {
+        "name": "Sitzheizung hinten rechts"
       }
     }
   }

@@ -1,7 +1,7 @@
 # Kurztexte Home Assistant (Website + App)
 
 ## Website (tcockpit.de, Abschnitt „Home Assistant“)
-**TCockpit in Home Assistant.** Akkustand, Reichweite, Laden, Standort, Klima und Schloss deines Tesla direkt in Home Assistant.
+**TCockpit in Home Assistant.** Akkustand, Reichweite, Laden, Standort und alle Steuerbefehle der App (Klima, Laden, Schloss, Kofferraum, Hupe …) direkt in Home Assistant.
 1. In der App unter Mehr › Home Assistant einen Schlüssel erstellen und kopieren.
 2. In HACS unter „Benutzerdefinierte Repositories“ `https://github.com/tcockpit/tcockpit-homeassistant` als Integration hinzufügen, „TCockpit“ installieren, Home Assistant neu starten.
 3. Einstellungen → Geräte & Dienste → Integration hinzufügen → TCockpit, Schlüssel einfügen.

@@ -1,0 +1,22 @@
+send_command:
+  name: Send command
+  description: Queue any allowlisted TCockpit vehicle command (same queue as the app).
+  fields:
+    vin:
+      required: true
+      example: "5YJ3E7EB0KF000000"
+      selector:
+        text:
+    command:
+      required: true
+      example: "set_charge_schedule"
+      selector:
+        text:
+    parameters:
+      required: false
+      example:
+        enabled: true
+        hour: 7
+        minute: 0
+      selector:
+        object:
